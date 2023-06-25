@@ -1,0 +1,40 @@
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 0;
+  }
+
+  header img {
+    cursor: pointer;
+    max-height: 100px;
+
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  header nav {
+    display: flex;
+
+  }
+
+  header nav ul {
+    display: flex;
+  }
+
+
+  header nav ul li {
+    list-style: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #18aff5;
+    cursor: pointer;
+    min-height: 35px;
+    margin-right: 3rem
+  }
+
+  header nav li:hover {
+    border-bottom: solid 3px #18aff5;
+  }
