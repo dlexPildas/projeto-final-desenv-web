@@ -11,6 +11,7 @@ import { isAuthenticated } from "@/app/services/user-service";
 
 export default function CardPerson(props: { person: Person }) {
   const [authenticated, setAuthenticated] = useState(false);
+  const [seeMore, setSeeMore] = useState(false);
 
   const handleFavorite = async (value: boolean) => {
     await favoritePerson(value, props.person.id);
@@ -19,6 +20,10 @@ export default function CardPerson(props: { person: Person }) {
   const handleAuthenticated = async () => {
     const result = isAuthenticated();
     setAuthenticated(result);
+  };
+
+  const handleSeeMore = () => {
+    setSeeMore(!seeMore);
   };
 
   useEffect(() => {
@@ -36,23 +41,38 @@ export default function CardPerson(props: { person: Person }) {
       <div className="card-body">
         <p>Data de nascimento: {props.person.bithDate}</p>
         <p>Data de falecimento: {props.person.deadDate}</p>
-        <button className="see-more">Ver mais...</button>
-
-        {authenticated ? props.person.favorite ? (
-          <FontAwesomeIcon
-            width={26}
-            onClick={() => handleFavorite(false)}
-            icon={faHeart}
-            className="favoritar-icon"
-          />
+        {seeMore ? (
+          <>
+            <strong>bio: </strong>
+            <p>{props.person.bio}</p>
+          </>
         ) : (
-          <FontAwesomeIcon
-            width={26}
-            onClick={() => handleFavorite(true)}
-            icon={farHeart}
-            className="favoritar-icon"
-          />
-        ) : <></>}
+          <></>
+        )}
+
+        <button onClick={handleSeeMore} className="see-more">
+          {!seeMore ? "Ver mais..." : "Ver menos..."}
+        </button>
+
+        {authenticated ? (
+          props.person.favorite ? (
+            <FontAwesomeIcon
+              width={26}
+              onClick={() => handleFavorite(false)}
+              icon={faHeart}
+              className="favoritar-icon"
+            />
+          ) : (
+            <FontAwesomeIcon
+              width={26}
+              onClick={() => handleFavorite(true)}
+              icon={farHeart}
+              className="favoritar-icon"
+            />
+          )
+        ) : (
+          <></>
+        )}
       </div>
     </li>
   );

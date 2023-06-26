@@ -39,3 +39,10 @@ header {
   header nav li:hover {
     border-bottom: solid 3px #000000;
   }
+
+  @media (max-width: 600px)
+  {
+    header nav ul {
+      flex-direction: column;
+    }
+  }

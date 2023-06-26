@@ -6,8 +6,6 @@ import { getPeople } from "../../services/people-service";
 import './style.css'
 
 export default async function HomePage() {
-  let people = await getPeople(false);
-
   return (
     <>
       <section className="container-main">
