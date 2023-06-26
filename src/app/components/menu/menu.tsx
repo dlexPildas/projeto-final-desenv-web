@@ -18,6 +18,10 @@ export default function Menu() {
                     <Link href="/favorite">
                         <li>Favoritos</li>
                     </Link>
+                    
+                    <Link href="/user">
+                        <li>Incluir</li>
+                    </Link>
 
                     <Link href="/contact">
                         <li>Fale Conosco</li>

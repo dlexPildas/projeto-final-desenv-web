@@ -2,17 +2,20 @@
 
 import React, { useState } from "react";
 import "./style.css";
+import { addComment } from "@/app/services/people-service";
 
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState("");
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log("Nome:", name);
     console.log("E-mail:", email);
     console.log("Comentário:", comment);
+
+    const result = await addComment(name, email, comment);
 
     setName("");
     setEmail("");
@@ -50,7 +53,7 @@ export default function Contact() {
           rows={5}
         ></textarea>
       </div>
-      <button type="submit">Enviar</button>
+      <button className="contact-button" type="submit">Enviar</button>
     </form>
   );
 }

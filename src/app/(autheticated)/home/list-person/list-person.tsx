@@ -1,7 +1,7 @@
 "use client";
 
 import CardPerson from "../card-person/card-person";
-import { getPeople } from "../services/people-service";
+import { getPeople } from "../../../services/people-service";
 import "./list-person.css";
 
 export default async function ListPerson(props: { favorite: boolean }) {

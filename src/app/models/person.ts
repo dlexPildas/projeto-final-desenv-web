@@ -5,4 +5,5 @@ export interface Person {
     deadDate: string;
     urlFoto: string;
     favorite: boolean;
+    bio: string;
 }

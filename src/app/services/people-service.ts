@@ -8,7 +8,7 @@ import {
     updateDoc,
     doc,
 } from 'firebase/firestore';
-import { db } from '../../../services/firebase';
+import { db } from './firebase';
 
 export async function getPeople(favorite: boolean) {
     const people = [] as Person[];
@@ -43,6 +43,18 @@ export async function favoritePerson(value: boolean, id: string) {
             favorite: value
         });
         return true;
+    } catch (error) {
+        return false;
+    }
+}
+
+export async function addComment(name: string, email: string, message: string) {
+    try {
+        const docRef = await addDoc(collection(db, 'comment'), { name, email, message });
+
+        if (docRef.id) return true;
+
+        return false;
     } catch (error) {
         return false;
     }

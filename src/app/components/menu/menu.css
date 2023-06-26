@@ -32,9 +32,10 @@ header {
     color: #394449;
     cursor: pointer;
     min-height: 35px;
-    margin-right: 3rem
+    margin-right: 3rem;
+    transition: background-color 0.3s, color 0.3s;
   }
 
   header nav li:hover {
-    border-bottom: solid 3px #18aff5;
+    border-bottom: solid 3px #000000;
   }

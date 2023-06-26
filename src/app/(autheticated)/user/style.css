@@ -1,7 +1,8 @@
-.comment-form {
-    max-width: 400px;
+.user-comment-form {
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 15px;
+    margin-bottom: 100px;
   }
   
   .form-title {
@@ -16,6 +17,10 @@
 
   .form-group {
     margin-bottom: 20px;
+  }
+
+  .form-dates {
+    display: flex;
   }
   
   label {
