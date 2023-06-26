@@ -58,6 +58,10 @@
     cursor: pointer;
   }
 
+  .see-more:hover {
+    background-color: #317e33;
+  }
+
   .card-action {
     display: flex;
     justify-content: space-evenly;

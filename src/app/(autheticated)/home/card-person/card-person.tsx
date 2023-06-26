@@ -5,15 +5,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 import { Person } from "@/app/models/person";
+import { favoritePerson } from "../services/people-service";
 
 export default function CardPerson(props: { person: Person}) {
-  const handleFavorite = (value: boolean) => {
-    props.person.favorite = value;
-    console.log(props.person.favorite);
+  const handleFavorite = async (value: boolean) => {
+    await favoritePerson(value, props.person.id);
   }
 
   return (
-    <div className="card">
+    <li className="card">
       <div className="card-header">
         <img src={props.person.urlFoto} alt="Foto" />
 
@@ -26,11 +26,11 @@ export default function CardPerson(props: { person: Person}) {
         <button className="see-more">Ver mais...</button>
 
         {props.person.favorite ? (
-          <FontAwesomeIcon onClick={() => handleFavorite(true)} icon={faHeart} className="favoritar-icon" />
+          <FontAwesomeIcon width={26} onClick={() => handleFavorite(false)} icon={faHeart} className="favoritar-icon" />
         ) : (
-          <FontAwesomeIcon onClick={() => handleFavorite(false)} icon={farHeart} className="favoritar-icon" />
+          <FontAwesomeIcon width={26} onClick={() => handleFavorite(true)} icon={farHeart} className="favoritar-icon" />
         )}
       </div>
-    </div>
+    </li>
   );
 }

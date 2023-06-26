@@ -20,12 +20,10 @@ body {
 
 }
 
-main {
+.container-main {
   margin: 20px auto;
   max-width: 950px;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
+  margin-bottom: 80px;
 }
 
 ::-webkit-scrollbar {
