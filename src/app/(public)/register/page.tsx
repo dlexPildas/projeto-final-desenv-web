@@ -4,36 +4,41 @@ import React, { useState } from "react";
 import "./style.css";
 import Link from "next/link";
 import ImgTitle from "@/app/components/img-titte";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../../services/firebase";
-import { loginUser } from "@/app/services/user-service";
 import { useRouter } from "next/navigation";
+import { createUser } from "@/app/services/user-service";
 
-export default function LoginForm() {
+export default function RegisterPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    
-    const result = await loginUser(email, password);
+
+    if (password != confirmPassword) return;
+
+    const result = await createUser(email, password);
 
     if (result) {
-      router.push('/');
+        router.push('/login');
     }
   };
 
   return (
     <section className="container">
       <div className="login-form-container">
+        <div className="title-login">
+          <Link href="/">
+            <ImgTitle />
+          </Link>
 
-        <div className="title-login">     
-        <Link href="/">
-          <ImgTitle />
-        </Link> 
-
-          <h2>Login</h2>
+          <h2>Criar uma nova conta</h2>
         </div>
 
         <form className="login-form" onSubmit={handleSubmit}>
@@ -46,6 +51,7 @@ export default function LoginForm() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="password">Senha:</label>
             <input
@@ -55,15 +61,20 @@ export default function LoginForm() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirmar Senha:</label>
+            <input
+              type="confirmPassword"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
 
-          <button type="submit">Entrar</button>
+          <button type="submit">Criar</button>
 
           <div className="login-action">
-            <a href="">
-              Esqueceu sua senha?
-            </a>
-
-            <Link href="/register">Criar conta</Link>
+            <Link href="/login">Voltar para login</Link>
           </div>
         </form>
       </div>

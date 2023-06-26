@@ -3,10 +3,11 @@
 import CardPerson from "../card-person/card-person";
 import { getPeople } from "../../../services/people-service";
 import "./list-person.css";
+import { useEffect, useState } from "react";
+import { Person } from "@/app/models/person";
 
 export default async function ListPerson(props: { favorite: boolean }) {
-  let people = await getPeople(props.favorite);
-
+  const people = await getPeople(props.favorite);
   return (
     <>
       <ul>

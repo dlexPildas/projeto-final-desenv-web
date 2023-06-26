@@ -17,6 +17,19 @@ export default function UserPage() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    let messages = "";
+
+    if (name.length === 0 || name.length > 100) {
+      messages += "Nome inválido (Mínimo 0 e Máximo 100 caracteres)"
+    }
+
+    if (bio.length === 0 || bio.length > 1000) {
+      messages += "\nBiografia inválida (Mínimo 0 e Máximo 1000 caracteres)"
+    }
+
+    if (messages) {
+      return alert(messages);
+    }
 
     const result = await addPerson({
       name,
